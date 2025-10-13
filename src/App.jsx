@@ -8,6 +8,10 @@ import SignUp from './pages/SignUp/SignUp'
 import Login from './pages/Login/Login'
 import Navbar2 from './components/Navbar2/Navbar2'
 import Feeds from './pages/Feeds/Feeds'
+import MyNetwork from './pages/MyNetwork/MyNetwork'
+import Resume from './pages/Resume/Resume'
+import Messages from './pages/Messages/Messages'
+import Profile from './pages/Profile/Profile'
 
 
  
@@ -23,6 +27,10 @@ function App() {
         <Route path='/SignUp' element={<SignUp/>}/>
         <Route path='/Login' element={<Login/>}/>
         <Route path='/Feeds' element={<Feeds/>}/>
+        <Route path='/myNetwork' element={<MyNetwork/>}/>
+        <Route path='/resume' element={<Resume/>}/>
+        <Route path='/messages' element={<Messages/>}/>
+        <Route path='/profile/:id' element={<Profile/>}/>
       </Routes>
       
       <Footer/>
