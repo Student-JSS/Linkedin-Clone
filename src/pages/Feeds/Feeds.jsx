@@ -55,7 +55,7 @@ const Feeds = () => {
                         <div onClick={()=>setAddPostModal(true)} className='w-full border-1 py-3 px-3 rounded-3xl cursor-pointer hover:bg-gray-100'>Start a Post</div>
                     </div>
 
-                    <div onClick={()=>setAddPostModal(true)} className='w-full flex mt-3'>
+                    <div className='w-full flex mt-3'>
                         <div className='flex gap-2 p-2 cursor-pointer justify-center rounded-lg w-[31%] hover:bg-gray-100'><VideocamIcon sx={{color: "green"}}/>Video</div>
 
                         <div onClick={()=>setAddPostModal(true)} className='flex gap-2 p-2 cursor-pointer justify-center rounded-lg w-[31%] hover:bg-gray-100'><AddAPhotoIcon sx={{color: "blue"}}/>Photo</div>

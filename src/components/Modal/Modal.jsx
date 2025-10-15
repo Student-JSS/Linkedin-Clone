@@ -12,9 +12,7 @@ const Modal = (props) => {
                 <div onClick={()=>props.closeModal()} className='cursor-pointer'><CloseIcon/></div>
             </div>
         </div>
-        
-            {props.children}
-        
+        {props.children}
     </div>
   )
 }

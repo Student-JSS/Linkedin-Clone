@@ -7,6 +7,10 @@ import AddIcon from '@mui/icons-material/Add';
 import Modal from '../../components/Modal/Modal';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import EditInfoModal from '../../components/EditInfoModal/EditInfoModal';
+import AboutModal from '../../components/AboutModal/AboutModal';
+import ExpModal from '../../components/ExpModal/ExpModal';
+import MessageModal from '../../components/MessageModal/MessageModal';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 const Profile = () => {
@@ -15,6 +19,21 @@ const Profile = () => {
     const [ circularImage, setCircularImage] = useState(true);
 
     const [infoModal, setInfoModal] = useState(false);
+    const [aboutModal, setAboutModal] = useState(false);
+    const [expModal, setExpModal] = useState(false);
+    const [messageModal, setMessageModal] = useState(false);
+
+    const handleMessageModal=()=>{
+        setMessageModal(prev=>!prev);
+    }
+
+    const handleExpModal=()=>{
+        setExpModal(prev=>!prev);
+    }
+
+    const handleAboutModal = () => {
+        setAboutModal(prev=>!prev);
+    }
 
     const handleInfoModal = () => {
         setInfoModal(prev=>!prev)
@@ -66,7 +85,7 @@ const Profile = () => {
                                         </div>
 
                                         <div className='my-5 flex gap-5'>
-                                        <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold'>Message</div>
+                                        <div onClick={handleMessageModal} className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold'>Message</div>
                                         <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold'>Connect</div>
                                         
                                         </div>
@@ -82,7 +101,7 @@ const Profile = () => {
                     <Card padding={1}>
                         <div className='flex justify-between items-center'>
                             <div className='text-xl p-2'>💻 About Me</div>
-                            <div className='cursor-pointer p-3'><EditIcon/></div>
+                            <div onClick={handleAboutModal} className='cursor-pointer p-3'><EditIcon/></div>
                         </div>
                         <div className= "p-3" >I’m Shivam, a passionate Frontend Developer focused on building clean, responsive, and engaging web interfaces. I specialize in HTML, CSS, JavaScript, and React, creating user-centered designs that blend functionality with aesthetics. I enjoy working with modern tools like Tailwind CSS, Next.js, and Git to deliver high-quality, scalable projects. My goal is to craft seamless digital experiences that leave a lasting impact. I’m constantly learning, improving my skills in UI/UX design and problem-solving, and staying updated with the latest web trends to create meaningful and efficient web solutions</div>
 
@@ -128,6 +147,12 @@ const Profile = () => {
                             </div>
 
                         </div>
+
+                        <div className='w-full flex justify-center items-center'>
+                            <div className='p-2 rounded-xl cursor-pointer hover:bg-gray-300'>Show All Posts <ArrowForwardIcon/>
+
+                            </div>
+                        </div>
                     </Card>
                 </div>
 
@@ -137,7 +162,7 @@ const Profile = () => {
                     <Card padding={1}>
                         <div className='flex justify-between items-center'>
                             <div className='text-xl px-3'>Experience</div>
-                            <div className='cursor-pointer'><AddIcon /></div>
+                            <div onClick={handleExpModal} className='cursor-pointer'><AddIcon /></div>
                         </div>
 
                         <div className='mt-5'>
@@ -175,6 +200,24 @@ const Profile = () => {
         {
             infoModal && <Modal title='Edit Info' closeModal={handleInfoModal}>
                 <EditInfoModal/>
+            </Modal>
+        }
+        {
+            aboutModal && <Modal title="Edit About" className={handleAboutModal}>
+            <AboutModal/>
+
+        </Modal>
+        }
+
+        {
+            expModal && <Modal title="Experience" closeModal={handleExpModal}>
+            <ExpModal/>
+        </Modal>
+        }
+
+        {
+            messageModal && <Modal title="Send Message" closeModal ={handleMessageModal}>
+                <MessageModal/>
             </Modal>
         }
       
