@@ -1,9 +1,39 @@
 import Card from '@mui/material/Card'
-import React from 'react'
+import React, { useState } from 'react'
 import Advertisements from '../../components/Advertisements/Advertisements'
 import EditIcon from '@mui/icons-material/Edit';
+import Post from '../../components/Post/Post';
+import AddIcon from '@mui/icons-material/Add';
+import Modal from '../../components/Modal/Modal';
+import ImageModal from '../../components/ImageModal/ImageModal';
+import EditInfoModal from '../../components/EditInfoModal/EditInfoModal';
+
 
 const Profile = () => {
+
+    const [imageSetModal, setImageModal] = useState(false);
+    const [ circularImage, setCircularImage] = useState(true);
+
+    const [infoModal, setInfoModal] = useState(false);
+
+    const handleInfoModal = () => {
+        setInfoModal(prev=>!prev)
+    }
+
+    const handleImageModalOpenClose = () => {
+        setImageModal(prev=>!prev)
+    }
+
+    const handleOnEditCover = () =>{
+        setImageModal(true);
+        setCircularImage(false);
+    }
+
+    const handleCircularImageOpen = ()=>{
+        setImageModal(true);
+        setCircularImage(true);
+
+    }
   return (
     <div className='px-5 xl:px-50 mt-5 flex flex-col gap-5 w-full pt-12 bg-gray-100'>
         <div className='flex justify-between'>
@@ -14,13 +44,13 @@ const Profile = () => {
                     <Card padding={0}>
                         <div className='w-full h-fit'>
                             <div className='relative w-full h-[200px]'>
-                                <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white'><EditIcon/></div>
+                                <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white' onClick={handleOnEditCover}><EditIcon/></div>
                                 <img src="https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467_1280.jpg" className='w-full h-[200px] rounded-tr-lg rounded-tl-lg'/>
-                                <div className='absolute object-cover top-24 left-6 z-10'> <img className='rounded-full border-2 border-white cursor-pointer w-35 h-35' src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000"/></div>
+                                <div  onClick={handleCircularImageOpen} className='absolute object-cover top-24 left-6 z-10'> <img className='rounded-full border-2 border-white cursor-pointer w-35 h-35' src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000"/></div>
                             </div>
 
                             <div className='mt-10 relative px-8 py-2'>
-                                <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white'><EditIcon/></div>
+                                <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white' onClick={handleInfoModal}><EditIcon/></div>
                                 
                                 <div className='w-full'>
                                     <div className='text-2xl'>User 1</div>
@@ -74,6 +104,55 @@ const Profile = () => {
                             </div>
                         
                     </Card>
+                </div>
+
+                <div className='mt-5'>
+                    <Card padding={1}>
+                        <div className='flex justify-between items-center'>
+                            <div className='text-xl p-3'>Activities</div>
+                        </div>
+                        <div className='cursor-pointer px-3 py-1 w-fit border-1 rounded-4xl bg-green-800 text-white font-semibold '>Posts</div>
+
+                        {/* parent div for scrollable activities */}
+                        <div className='overflow-x-auto my-2 flex gap-1 overflow-y-hidden w-full'>
+                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Post profile={1}/>
+                            </div>
+
+                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Post profile={1}/>
+                            </div>
+
+                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Post profile={1}/>
+                            </div>
+
+                        </div>
+                    </Card>
+                </div>
+
+                {/* experience section */}
+
+                <div className='mt-5 '>
+                    <Card padding={1}>
+                        <div className='flex justify-between items-center'>
+                            <div className='text-xl px-3'>Experience</div>
+                            <div className='cursor-pointer'><AddIcon /></div>
+                        </div>
+
+                        <div className='mt-5'>
+                            <div className='p-2 border-t-1 border-gray-500 flex justify-between'>
+                                <div>
+                            <div className='text-lg px-3'>DSE Engineer | Full Stack ENgineer</div>
+                            <div className='text-sm px-3'>Amazon</div>
+                            <div className='text-sm text-gray-500 px-3'>March 2022- Present</div>
+                            <div className='text-sm text-gray-500 px-3'>Delhi, India</div>
+                            </div>
+
+                            <div className='cursor-pointer'><EditIcon/></div>
+                        </div>
+                        </div>
+                    </Card>
 
                 </div>
             </div>
@@ -87,6 +166,17 @@ const Profile = () => {
                 </div>
             </div>
         </div>
+        {
+            imageSetModal && <Modal title='upload Image' closeModal={handleImageModalOpenClose}>
+            <ImageModal isCircular={circularImage}/>
+            </Modal>
+        }
+
+        {
+            infoModal && <Modal title='Edit Info' closeModal={handleInfoModal}>
+                <EditInfoModal/>
+            </Modal>
+        }
       
     </div>
   )

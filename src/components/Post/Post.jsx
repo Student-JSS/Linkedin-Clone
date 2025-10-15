@@ -6,7 +6,7 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentIcon from '@mui/icons-material/Comment';
 import SendIcon from '@mui/icons-material/Send';
 
-const Post = () => {
+const Post = ({profile}) => {
     const [seeMore, setSeeMore] = useState(false);
     const [comment, setComment] = useState(false);
 
@@ -46,7 +46,8 @@ const Post = () => {
             </div>
         </div>
 
-        <div className='flex p-1'>
+        {
+            !profile && <div className='flex p-1'>
             <div className='w-[33%] justify-center flex gap-2 items-center border-b-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-100'>
                 <ThumbUpIcon sx={{fontSize:22, color:"blue"}}/> <span>Like</span>
             </div>
@@ -59,6 +60,7 @@ const Post = () => {
                 <SendIcon sx={{fontSize:22}}/> <span>Share</span>
             </div>
         </div>
+        }
 
         {/* comment section */}
         {
