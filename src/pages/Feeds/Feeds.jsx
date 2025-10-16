@@ -8,6 +8,7 @@ import Advertisements from '../../components/Advertisements/Advertisements';
 import Post from '../../components/Post/Post';
 import Modal from '../../components/Modal/Modal';
 import AddModal from '../../components/AddModal/AddModal';
+import Loader from '../../components/Loader/Loader';
 // import { useState } from 'react';
 
 
@@ -107,6 +108,8 @@ const Feeds = () => {
             <AddModal/>
         </Modal>
          }
+
+         <Loader/>
     </div>
   )
 }

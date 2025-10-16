@@ -11,9 +11,12 @@ import AboutModal from '../../components/AboutModal/AboutModal';
 import ExpModal from '../../components/ExpModal/ExpModal';
 import MessageModal from '../../components/MessageModal/MessageModal';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const Profile = () => {
+    const {id} = useParams();
 
     const [imageSetModal, setImageModal] = useState(false);
     const [ circularImage, setCircularImage] = useState(true);
@@ -134,24 +137,26 @@ const Profile = () => {
 
                         {/* parent div for scrollable activities */}
                         <div className='overflow-x-auto my-2 flex gap-1 overflow-y-hidden w-full'>
-                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Link to={`/profile/${id}/activities/112`}  className='cursor-pointer shrink-0 w-[350px] h-[560px]'>
                             <Post profile={1}/>
-                            </div>
+                            </Link>
 
-                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Link to={`/profile/${id}/activities/113`}  className='cursor-pointer shrink-0 w-[350px] h-[560px]'>
                             <Post profile={1}/>
-                            </div>
+                            </Link>
 
-                            <div className='cursor-pointer shrink-0-w-[350px]'>
+                            <Link to={`/profile/${id}/activities/114`}  className='cursor-pointer shrink-0 w-[350px] h-[560px]'>
                             <Post profile={1}/>
-                            </div>
+                            </Link>
+
+                            
 
                         </div>
 
                         <div className='w-full flex justify-center items-center'>
-                            <div className='p-2 rounded-xl cursor-pointer hover:bg-gray-300'>Show All Posts <ArrowForwardIcon/>
+                            <Link to={`/profile/${id}/activities`}className='p-2 rounded-xl cursor-pointer hover:bg-gray-300'>Show All Posts <ArrowForwardIcon/>
 
-                            </div>
+                            </Link>
                         </div>
                     </Card>
                 </div>
